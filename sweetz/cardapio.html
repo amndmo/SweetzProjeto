@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweetz - Cardápio</title>
+  <style>
+    body {
+      background-color:rgba(181, 205, 235, 1);
+      margin: 0;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      color: rgb(141, 74, 43);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 150px;
+      padding: 10px 20px;
+    }
+
+    .menu a {
+      letter-spacing: 2px;
+      font-size: larger;
+      font-weight: bold;
+      color: rgb(141, 74, 43);
+      text-decoration: none;
+    }
+
+    .menu img {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .linha {
+      width: 95%;
+      height: 4px;
+      background-color: rgb(141, 74, 43);
+      margin-left: 30px;
+    }
+
+    .oswald{
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: weight;
+      font-style: normal;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .card { /*container do produto*/
+      background-color: #e6e6f5;
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      width: 170px;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .card h4 {
+      margin: 10px 0 5px;
+      font-size: 15px;
+      color: #5c1e14;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .card button { /*botão de add produto*/
+      background-color: #3a3a8a;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .card button:hover {
+      background-color: #2a2a6a; /*botão de add produto*/
+    }
+  </style>
+</head>
+<body>
+  <div class="oswald">
+    <nav class="menu">
+      <h3 style="margin-left: 40px;">SWEETZ</h3>
+      <a href="index.html">HOME</a>
+      <a href="cardapio.html" style="color: rgb(83, 44, 25);">CARDÁPIO</a>
+      <a href="login.html">LOGIN</a>
+      <a href="carrinho.html">
+        <img style="width: 40px; height: 40px;" src="C:\Users\amanda_de-moraes\Downloads\local_mall_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Carrinho de compras" style="cursor: pointer; width: 150px;" />
+      </a>
+      <img style="width: 40px; height: 40px;" src="C:\Users\amanda_de-moraes\Downloads\account_circle_24dp_714216_FILL0_wght400_GRAD0_opsz24.png" alt="user">
+    </nav>
+    <div class="linha"></div>
+    <div class="grid">
+      <div class="card">
+        <img src="https://lastcrumb.com/cdn/shop/files/chocolatechipxxx_2x_1024x1024_4b6aabfa-7ed7-4a3e-adcb-4badb49263eb.webp?v=1736875397" alt="chocogotas">
+        <h4>chocogotas</h4>
+        <p>R$9,90</p>
+        <button onclick="adicionarCarrinho('chocogotas', 9.9)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="https://substackcdn.com/image/fetch/$s_!HzrK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F908c3df0-f5fe-4716-8686-c0e91e719067_600x600.png" alt="pink confetti">
+        <h4 style="color: #c66ca0;">pink confetti</h4>
+        <p>R$11,90</p>
+        <button onclick="adicionarCarrinho('pink confetti', 11.9)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="C:\Users\amanda_de-moraes\Downloads\html\sweetz\imgs\wjv8u5psu6g61.webp" alt="nutellicia">
+        <h4>nutellicia</h4>
+        <p>R$14,50</p>
+        <button onclick="adicionarCarrinho('nutellicia', 14.5)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="https://d2bzx2vuetkzse.cloudfront.net/fit-in/0x450/unshoppable_producs/46926b68-4632-4318-9dd1-e84acbba2df5.png" alt="brownudo">
+        <h4>brownudo</h4>
+        <p>R$12,50</p>
+        <button onclick="adicionarCarrinho('brownudo', 12.5)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="https://cjs-confections.com/cdn/shop/files/rn-image_picker_lib_temp_acd6c5da-f88d-49ba-9029-b16b65bec120.png?v=1750124755" alt="sweetz velvet">
+        <h4 style="color: #8b0000;">sweetz velvet</h4>
+        <p>R$12,90</p>
+        <button onclick="adicionarCarrinho('sweetz velvet', 12.9)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="https://www.montgomeryadvertiser.com/gcdn/presto/2023/03/02/PMOY/ecabbea0-e7f6-45f7-96db-1b8bc9a5bdb5-ChocolateftOreo_Aerial.png?width=700&height=700&fit=crop&format=pjpg&auto=webp" alt="oreomagic">
+        <h4>oreomagic</h4>
+        <p>R$12,90</p>
+        <button onclick="adicionarCarrinho('oreomagic', 12.9)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="https://johnpurvis.wordpress.com/wp-content/uploads/2020/04/peanutbutterbrownie600x600.png" alt="amendocura">
+        <h4>amendocura</h4>
+        <p>R$11,90</p>
+        <button onclick="adicionarCarrinho('amendocura', 11.9)">adicionar ao carrinho</button>
+      </div>
+
+      <div class="card">
+        <img src="https://crumblcookies-menu.com/wp-content/uploads/2024/08/Smores-Brownie.webp" alt="chocomallow">
+        <h4>chocomallow</h4>
+        <p>R$14,50</p>
+        <button onclick="adicionarCarrinho('chocomallow', 14.5)">adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function adicionarCarrinho(nome, preco) {
+      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || []; //colocar o produto num localStorage
+
+      let itemExistente = carrinho.find(item => item.nome === nome); //nao repetir item no carrinho
+
+      if (itemExistente) {
+        itemExistente.quantidade += 1;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    }
+  </script>
+</body>
+</html>

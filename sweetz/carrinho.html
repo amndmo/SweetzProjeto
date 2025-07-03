@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sweetz - Carrinho</title>
+  <style>
+    body {
+      background-color:rgba(181, 205, 235, 1);
+      margin: 0;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      color: rgb(141, 74, 43);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 150px;
+      padding: 10px 20px;
+    }
+
+    .menu a {
+      letter-spacing: 2px;
+      font-size: larger;
+      font-weight: bold;
+      color: rgb(141, 74, 43);
+      text-decoration: none;
+    }
+
+    .menu img {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .linha {
+      width: 95%;
+      height: 4px;
+      background-color: rgb(141, 74, 43);
+      margin-left: 30px;
+    }
+
+    .oswald{
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: weight;
+      font-style: normal;
+    }
+
+    .titulo-carrinho {
+      text-align: center;
+      color: #9c3a0c;
+    }
+
+    .container-carrinho { 
+      background-color: #8fa3d2;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 60%;
+    }
+
+    .item { 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .item-info { /*produtos */
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    .item input { /*botão de qtd */
+      width: 40px;
+      margin-left: 10px;
+      background-color: #3e4580;
+      color: white;
+    }
+
+    .total { 
+      text-align: center;
+      font-weight: bold;
+      color: #9c3a0c;
+      font-size: 18px;
+    }
+
+    .finalizar {   /*botão de finalizar */
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background-color: #3e4580;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="oswald">
+    <nav class="menu">
+      <h3 style="margin-left: 40px;">SWEETZ</h3>
+      <a href="index.html">HOME</a>
+      <a href="cardapio.html">CARDÁPIO</a>
+      <a href="login.html">LOGIN</a>
+      <a href="carrinho.html" style="color: rgb(83, 44, 25);">
+        <img src="C:\Users\amanda_de-moraes\Downloads\local_mall_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Carrinho de compras"/>
+      </a>
+      <img src="C:\Users\amanda_de-moraes\Downloads\account_circle_24dp_714216_FILL0_wght400_GRAD0_opsz24.png" alt="user">
+    </nav>
+
+    <div class="linha"></div>
+    <h2 class="titulo-carrinho">CARRINHO</h2>
+
+    <main class="container-carrinho" id="lista-carrinho">
+    </main>
+
+    <p class="total">VALOR TOTAL: R$<span id="valor-total">0,00</span></p>
+    <button class="finalizar">FINALIZAR COMPRA</button>
+  </div>
+
+  <script>
+    function carregarCarrinho() {
+      const container = document.getElementById("lista-carrinho");
+      const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      let total = 0;
+
+      if (carrinho.length === 0) {
+        container.innerHTML = "<p>Seu carrinho está vazio.</p>";
+        return;
+      }
+
+      carrinho.forEach((item, index) => {
+        const precoUnitario = parseFloat(item.preco);
+        const quantidade = item.quantidade || 1;
+        const subtotal = precoUnitario * quantidade;
+        total += subtotal;
+
+        const div = document.createElement("div");
+        div.classList.add("item");
+
+        div.innerHTML = `
+          <div class="item-info">
+            <p><strong>${item.nome}</strong> - R$ ${precoUnitario.toFixed(2).replace(".", ",")}</p>
+          </div>
+          <div>
+            <input type="number" min="1" value="${quantidade}" data-index="${index}" data-preco="${precoUnitario}">
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+
+      atualizarTotal();
+
+      document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener("input", () => {
+          const index = input.getAttribute("data-index");
+          const novoValor = parseInt(input.value);
+          carrinho[index].quantidade = novoValor;
+          localStorage.setItem("carrinho", JSON.stringify(carrinho));
+          atualizarTotal();
+        });
+      });
+    }
+
+    function atualizarTotal() {
+      const inputs = document.querySelectorAll('input[type="number"]');
+      let total = 0;
+      inputs.forEach(input => {
+        const preco = parseFloat(input.getAttribute("data-preco"));
+        const quantidade = parseInt(input.value);
+        total += preco * quantidade;
+      });
+
+      document.getElementById("valor-total").textContent = total.toFixed(2).replace('.', ',');
+    }
+    carregarCarrinho();
+  </script>
+</body>
+</html>
